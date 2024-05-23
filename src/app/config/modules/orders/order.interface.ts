@@ -1,4 +1,4 @@
-export type CreateOrderRequest = {
+export type TOrder = {
   email: string;
   productId: string;
   price: number;
