@@ -10,6 +10,17 @@ const getAllProducts = async () => {
   const result = await Product.find({});
   return result;
 };
+const getProductBySearchTerm = async (searchTerm: string) => {
+  const regex = new RegExp(searchTerm, "i");
+  const products = await Product.find({
+    $or: [
+      { name: regex },
+      //  { description: regex },
+      //   { tags: regex },
+    ],
+  });
+  return products;
+};
 
 const getProductById = async (id: string) => {
   const result = await Product.findById(id);
@@ -47,6 +58,7 @@ const deleteProductById = async (productId: string) => {
 export const ProductServices = {
   createProduct,
   getAllProducts,
+  getProductBySearchTerm,
   getProductById,
   updatedProduct,
   deleteProductById,
