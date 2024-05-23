@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./product.service";
 import ProductValidationSchema from "./product.validation";
+import { boolean } from "zod";
 
 const createProduct = async (req: Request, res: Response) => {
   try {
@@ -9,7 +10,7 @@ const createProduct = async (req: Request, res: Response) => {
     const zodParseData = ProductValidationSchema.parse(productData);
 
     const result = await ProductServices.createProduct(zodParseData);
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       message: "Products created successfully!",
       data: result,
@@ -46,8 +47,38 @@ const getProductById = async (req: Request, res: Response) => {
   }
 };
 
+const updateProductById = async (req: Request, res: Response) => {
+  try {
+    const updatedProduct = req.body;
+    const { productId } = req.params;
+
+    const result = await ProductServices.updatedProduct(
+      productId,
+      updatedProduct
+    );
+    res.status(200).json({
+      success: true,
+      message: "Product updated successfully!",
+      data: result,
+    });
+  } catch (error: any) {
+    if (error.message === "Product not found") {
+      return res.status(404).send({
+        success: false,
+        message: error.message,
+      });
+    }
+    res.status(500).json({
+      success: false,
+      message: "Error Updating Product",
+      error: error.message,
+    });
+  }
+};
+
 export const ProductControllers = {
   createProduct,
   getAllProducts,
   getProductById,
+  updateProductById,
 };

@@ -16,8 +16,24 @@ const getProductById = async (id: string) => {
   return result;
 };
 
+const updatedProduct = async (productId: string, payload: TProduct) => {
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(productId, payload, {
+      new: true,
+      runValidators: true,
+    });
+    if (!updatedProduct) {
+      throw new Error("Product not found");
+    }
+    return updatedProduct;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
 export const ProductServices = {
   createProduct,
   getAllProducts,
   getProductById,
+  updatedProduct,
 };
