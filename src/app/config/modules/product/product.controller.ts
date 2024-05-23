@@ -8,7 +8,7 @@ const createProduct = async (req: Request, res: Response) => {
     //validation with zod
     const zodParseData = ProductValidationSchema.parse(productData);
 
-    const result = await ProductServices.createProduct(productData);
+    const result = await ProductServices.createProduct(zodParseData);
     res.status(200).json({
       success: true,
       message: "Products created successfully!",
