@@ -31,9 +31,23 @@ const updatedProduct = async (productId: string, payload: TProduct) => {
   }
 };
 
+const deleteProductById = async (productId: string) => {
+  try {
+    const product = await Product.findById(productId);
+    if (!product) {
+      throw new Error("Product not found");
+    }
+    const result = await Product.findByIdAndDelete(productId);
+    return result;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
 export const ProductServices = {
   createProduct,
   getAllProducts,
   getProductById,
   updatedProduct,
+  deleteProductById,
 };
