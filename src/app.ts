@@ -3,8 +3,8 @@ import cors from "cors";
 import express from "express";
 import { ProductRoutes } from "./app/config/modules/product/product.route";
 import { OrderRoutes } from "./app/config/modules/orders/order.route";
-import { notFoundHandler } from "./app/config/modules/middleware/notFoundHandler";
-import { errorHandler } from "./app/config/modules/middleware/errorHandler";
+import { notFoundHandler } from "./app/middleware/notFoundHandler";
+import { errorHandler } from "./app/middleware/errorHandler";
 
 const app = express();
 //parser
