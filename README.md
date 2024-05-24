@@ -1,4 +1,3 @@
-````markdown
 # TypeScript Express App with MongoDB and Zod Validation
 
 ## Description
@@ -12,7 +11,6 @@ This project is a simple E-commerce API built using Node.js, Express, TypeScript
    ```bash
    git clone https://github.com/mohammad-al-samiul/TypeScript-Express-App-with-MongoDB-and-Zod-Validation.git
    ```
-````
 
 2. Navigate to the project directory:
 
@@ -123,7 +121,3 @@ TypeScript-Express-App-with-MongoDB-and-Zod-Validation
 ```
 
 Now you should be ready to run and test the application locally. If you encounter any issues, please refer to the documentation or raise an issue in the repository.
-
-```
-
-```
