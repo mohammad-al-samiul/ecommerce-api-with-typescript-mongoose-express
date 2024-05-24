@@ -75,10 +75,9 @@ const getProductById = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    res.status(500).json({
+    res.status(404).json({
       success: false,
-      message: "Error Find the single Product",
-      error: error.message,
+      message: error.message,
     });
   }
 };

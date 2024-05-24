@@ -24,6 +24,10 @@ const getProductBySearchTerm = async (searchTerm: string) => {
 
 const getProductById = async (id: string) => {
   const result = await Product.findById(id);
+
+  if (!result) {
+    throw new Error("Product not Found");
+  }
   return result;
 };
 

@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import cors from "cors";
 import express from "express";
-import { ProductRoutes } from "./app/config/modules/product/product.route";
-import { OrderRoutes } from "./app/config/modules/orders/order.route";
+
 import { notFoundHandler } from "./app/middleware/notFoundHandler";
 import { errorHandler } from "./app/middleware/errorHandler";
+import { ProductRoutes } from "./app/modules/product/product.route";
+import { OrderRoutes } from "./app/modules/orders/order.route";
 
 const app = express();
 //parser
