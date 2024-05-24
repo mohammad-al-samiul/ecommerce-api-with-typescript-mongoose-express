@@ -29,10 +29,10 @@ This project is a simple E-commerce API built using Node.js, Express, TypeScript
 
 ## Configuration
 
-Create a .env file in the root of the project and add the necessary environment variables:
+Create a `.env file` in the root of the project and add the necessary environment variables:
 
-    ```bash
-    PORT=5000
-    DB_URI=mongodb+srv://your-username:your-password@your-cluster-url/your-database-name?retryWrites=true&w=majority
+    ```.env
+        PORT=5000
+        DB_URI=mongodb+srv://your-username:your-password@your-cluster-url/your-database-name?retryWrites=true&w=majority
 
     ```
