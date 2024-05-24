@@ -5,8 +5,13 @@ import orderValidationSchema from "./order.validation";
 const createOrder = async (req: Request, res: Response) => {
   try {
     const orderData = req.body;
+    const { productId, quantity } = req.body;
     const zodParseData = orderValidationSchema.parse(orderData);
-    const result = await OrderServices.createOrder(zodParseData);
+    const result = await OrderServices.createOrder(
+      zodParseData,
+      productId,
+      quantity
+    );
     res.status(201).json({
       success: true,
       message: "Order created successfully!",
