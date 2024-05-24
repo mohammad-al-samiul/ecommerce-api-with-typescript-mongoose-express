@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { OrderServices } from "./order.service";
 import orderValidationSchema from "./order.validation";
 
-const createOrder = async (req: Request, res: Response) => {
+const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const orderData = req.body;
     const { productId, quantity } = req.body;
@@ -17,16 +17,12 @@ const createOrder = async (req: Request, res: Response) => {
       message: "Order created successfully!",
       data: result,
     });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Error create order!",
-      data: null,
-    });
+  } catch (error: any) {
+    next(error);
   }
 };
 
-const getAllOrder = async (req: Request, res: Response) => {
+const getAllOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const email = req.query.email as string;
     if (!email) {
@@ -38,18 +34,16 @@ const getAllOrder = async (req: Request, res: Response) => {
       });
     } else {
       const orders = await OrderServices.getOrderByEmail(email);
-      res.status(200).json({
-        success: true,
-        message: "Orders fetched successfully for user email!",
-        data: orders,
-      });
+      if (orders.length > 0) {
+        res.status(200).json({
+          success: true,
+          message: `Orders fetched successfully for user ${email}!`,
+          data: orders,
+        });
+      }
     }
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Error fetch order!",
-      data: null,
-    });
+    next(error);
   }
 };
 
