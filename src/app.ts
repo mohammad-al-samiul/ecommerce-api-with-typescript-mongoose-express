@@ -14,15 +14,13 @@ app.use(cors());
 
 app.use("/api/products", ProductRoutes);
 app.use("/api/orders", OrderRoutes);
-
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello World!");
+});
 // Handle undefined routes
 app.use(notFoundHandler);
 
 // Error handling middleware
 app.use(errorHandler);
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
 
 export default app;
