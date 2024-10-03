@@ -14,8 +14,10 @@ This project is a simple E-commerce API built using Node.js, Express, TypeScript
 
 2. Navigate to the project directory:
 
-   ```bash
    cd TypeScript-Express-App-with-MongoDB-and-Zod-Validation
+
+   ```
+
    ```
 
 3. Install the dependencies:
